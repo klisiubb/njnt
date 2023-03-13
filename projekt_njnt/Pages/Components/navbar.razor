@@ -1,5 +1,4 @@
 ﻿<MudThemeProvider />
-
 <MudLayout>
     <MudAppBar Elevation="1" Style="@($"background-color:{Colors.Teal.Default};")">
         <MudText Typo="Typo.h5" Class="ml-3">
@@ -10,7 +9,7 @@
         <MudButton @onclick="Login" Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.Orange.Lighten2};")">
             <MudLink Href="#" Underline="Underline.None" Color="Color.Dark">Login</MudLink>
             </MudButton>
-        <MudButton @onclick="Register" Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.BlueGrey.Lighten4};")">
+        <MudButton  Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.BlueGrey.Lighten4};")">
             <MudLink Href="#" Underline="Underline.None" Color="Color.Dark">Register</MudLink>
             </MudButton>
     </MudAppBar>
@@ -21,9 +20,8 @@
 @inject IDialogService DialogService
 @code {
     private void Login() {
-        var parameters = new DialogParameters();
         var options = new DialogOptions() { CloseButton = true, };
-        DialogService.Show<DialogTemplateExample_Dialog>("Login",paramters,options)
+        DialogService.Show<Registration>("Login",options);
     }
     
 }
