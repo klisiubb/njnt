@@ -1,8 +1,11 @@
 ﻿@using System.ComponentModel.DataAnnotations
-@page "/registration"
-<h3>Register your account</h3>
 
-<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+<MudDialog>
+    <DialogContent>
+        <MudText>Register your account</MudText>
+    </DialogContent>
+    <DialogActions>
+        <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
 <DataAnnotationsValidator/>
 <MudGrid>
     <MudItem xs="12" sm="7">
@@ -19,34 +22,43 @@
             </MudCardContent>
             <MudCardActions>
                 <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Style="@($"background-color:{Colors.Yellow.Accent4};")" Class="ml-auto">Register</MudButton>
+                <MudButton ButtonType="ButtonType.Button" Variant="Variant.Outlined" Style="@($"background-color:{Colors.Grey.Darken1};")" Class="m1-auto">Cancel</MudButton>
             </MudCardActions>
         </MudCard>
     </MudItem>
 </MudGrid>
 </EditForm>
-@code {
-    RegisterAccountForm model = new RegisterAccountForm();
+        @code {
+            RegisterAccountForm model = new RegisterAccountForm();
     bool success;
 
     public class RegisterAccountForm
     {
-        [Required]
-        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
-        public string Username { get; set; }
+            [Required]
+            [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
+            public string Username { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
 
-        [Required]
-        [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
-        public string Password { get; set; }
+            [Required]
+            [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+            public string Password { get; set; }
 
-        [Required]
-        [Compare(nameof(Password))]
-        public string Password2 { get; set; }
+            [Required]
+            [Compare(nameof(Password))]
+            public string Password2 { get; set; }
 
     }
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+        void Submit() => MudDialog.Close(DialogResult.Ok(true));
+        void Cancel() => MudDialog.Cancel();
 
 }
+    </DialogActions>
+</MudDialog>
+
+
 
