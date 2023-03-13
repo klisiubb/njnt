@@ -6,10 +6,10 @@
             HMX
             </MudText>
         <MudSpacer />
-        <MudButton @onclick="Login" Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.Orange.Lighten2};")">
+        <MudButton  Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.Orange.Lighten2};")">
             <MudLink Href="#" Underline="Underline.None" Color="Color.Dark">Login</MudLink>
             </MudButton>
-        <MudButton  Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.BlueGrey.Lighten4};")">
+        <MudButton @onclick="Register" Class="mx-2" Variant="Variant.Filled" Style="@($"background-color:{Colors.BlueGrey.Lighten4};")">
             <MudLink Href="#" Underline="Underline.None" Color="Color.Dark">Register</MudLink>
             </MudButton>
     </MudAppBar>
@@ -19,9 +19,9 @@
 </MudLayout>
 @inject IDialogService DialogService
 @code {
-    private void Login() {
+    private void Register() {
         var options = new DialogOptions() { CloseButton = true, };
-        DialogService.Show<Registration>("Login",options);
+        DialogService.Show<RegistrationPage>("Register",options);
     }
     
 }
